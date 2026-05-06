@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>HealthCare Shop</title>
+<title>Arogya Med and Lab</title>
 
 <style>
 body {
@@ -69,15 +69,15 @@ input {
 
 <body>
 
-<header>🏥 HealthCare Shop</header>
+<header>🏥 Arogya Lab and Medicine</header>
 
 <nav>
-<button onclick="showSection('medicine')">Medicines</button>
-<button onclick="showSection('lab')">Lab Tests</button>
+<button onclick="showSection('Medicine')">Medicines</button>
+<button onclick="showSection('Lab')">Lab Tests</button>
 </nav>
 
 <!-- MEDICINE -->
-<section id="medicine">
+<section id="Medicine">
 <h2>💊 Medicines</h2>
 
 <div class="card">Paracetamol</div>
@@ -87,7 +87,7 @@ input {
 </section>
 
 <!-- LAB -->
-<section id="lab" class="hidden">
+<section id="Lab" class="hidden">
 
 <h2>🧪 Lab Tests</h2>
 
@@ -111,8 +111,8 @@ input {
 
 /* Navigation */
 function showSection(section) {
-  document.getElementById('medicine').classList.add('hidden');
-  document.getElementById('lab').classList.add('hidden');
+  document.getElementById('Medicine').classList.add('hidden');
+  document.getElementById('Lab').classList.add('hidden');
   document.getElementById(section).classList.remove('hidden');
 }
 
