@@ -80,12 +80,21 @@ input {
 <section id="Medicine">
 <h2>💊 Medicines</h2>
 
+<!-- Customer Details -->
+<input type="text" id="custNameMed" placeholder="Customer Name">
+<input type="tel" id="custPhoneMed" placeholder="Contact Number">
+
+<!-- Predefined Medicines -->
 <label><input type="checkbox" value="Paracetamol"> Paracetamol</label><br>
 <label><input type="checkbox" value="Aspirin"> Aspirin</label><br>
 
-<button class="btn" onclick="orderAll()">Order Selected</button>
-</section>
+<!-- Manual Entry -->
+<h3>Other Medicines</h3>
+<textarea id="manualMed" placeholder="Type medicines (e.g. Dolo 650, Crocin)" style="width:100%; height:80px;"></textarea>
 
+<button class="btn" onclick="orderAll()">Order via WhatsApp</button>
+</section>
+  
 <!-- LAB -->
 <section id="Lab" class="hidden">
 
@@ -134,27 +143,53 @@ function calcLab() {
   /* Order of Medicine */
   function orderAll() {
 
-  let phone = "917479119141"; // your number
+  let phone = "919883977987"; // your WhatsApp number
+
+  let name = document.getElementById('custNameMed').value;
+  let contact = document.getElementById('custPhoneMed').value;
 
   let selected = document.querySelectorAll('#Medicine input[type="checkbox"]:checked');
+  let manual = document.getElementById('manualMed').value;
 
-  if (selected.length === 0) {
-    alert("Select at least one medicine");
+  if (!name || !contact) {
+    alert("Please enter customer name and contact number");
     return;
   }
 
-  let message = "Order:\n";
-
-  selected.forEach(item => {
-  let qty = prompt("Enter quantity for " + item.value);
-  if (qty) {
-    message += "- " + item.value + " x " + qty + "\n";
+  if (selected.length === 0 && manual.trim() === "") {
+    alert("Please select or enter at least one medicine");
+    return;
   }
-});
+
+  let message = "🧾 *Medicine Order*\n\n";
+
+  message += "👤 Name: " + name + "\n";
+  message += "📞 Contact: " + contact + "\n\n";
+
+  message += "💊 Medicines:\n";
+
+  // Selected medicines with quantity
+  selected.forEach(item => {
+    let qty = prompt("Enter quantity for " + item.value);
+    if (qty && qty > 0) {
+      message += "- " + item.value + " x " + qty + "\n";
+    }
+  });
+
+  // Manual medicines
+  if (manual.trim() !== "") {
+    message += "\n📝 Other Medicines:\n" + manual + "\n";
+  }
 
   let url = "https://wa.me/" + phone + "?text=" + encodeURIComponent(message);
 
   window.open(url, "_blank");
+
+  // Reset fields (optional)
+  document.getElementById('custNameMed').value = "";
+  document.getElementById('custPhoneMed').value = "";
+  document.getElementById('manualMed').value = "";
+  selected.forEach(item => item.checked = false);
 }
 
 /* 🔥 CONNECT TO GOOGLE FORM */
