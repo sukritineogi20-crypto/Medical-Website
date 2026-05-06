@@ -80,10 +80,10 @@ input {
 <section id="Medicine">
 <h2>💊 Medicines</h2>
 
-<div class="card">Paracetamol</div>
-<div class="card">Aspirin</div>
+<label><input type="checkbox" value="Paracetamol"> Paracetamol</label><br>
+<label><input type="checkbox" value="Aspirin"> Aspirin</label><br>
 
-<p>Orders handled manually</p>
+<button class="btn" onclick="orderAll()">Order Selected</button>
 </section>
 
 <!-- LAB -->
@@ -129,6 +129,32 @@ function calcLab() {
 
   let paid = parseInt(document.getElementById('paid').value) || 0;
   document.getElementById('remaining').innerText = total - paid;
+}
+
+  /* Order of Medicine */
+  function orderAll() {
+
+  let phone = "917479119141"; // your number
+
+  let selected = document.querySelectorAll('#Medicine input[type="checkbox"]:checked');
+
+  if (selected.length === 0) {
+    alert("Select at least one medicine");
+    return;
+  }
+
+  let message = "Order:\n";
+
+  selected.forEach(item => {
+  let qty = prompt("Enter quantity for " + item.value);
+  if (qty) {
+    message += "- " + item.value + " x " + qty + "\n";
+  }
+});
+
+  let url = "https://wa.me/" + phone + "?text=" + encodeURIComponent(message);
+
+  window.open(url, "_blank");
 }
 
 /* 🔥 CONNECT TO GOOGLE FORM */
