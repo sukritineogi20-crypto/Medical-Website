@@ -100,6 +100,9 @@ input {
 
 <h2>🧪 Lab Tests</h2>
 
+  <input type="text" id="custName" placeholder="Customer Name">
+  <input type="tel" id="custPhoneMed" placeholder="Contact Number">
+
 <label><input type="checkbox" value="200" onchange="calcLab()"> Blood Test ₹200</label><br>
 <label><input type="checkbox" value="100" onchange="calcLab()"> Sugar Test ₹100</label><br>
 <label><input type="checkbox" value="300" onchange="calcLab()"> Thyroid Test ₹300</label>
@@ -109,8 +112,6 @@ input {
 <input type="number" id="paid" placeholder="Paid Amount" oninput="calcLab()">
 
 <h3>Remaining: ₹<span id="remaining">0</span></h3>
-
-<input type="text" id="custName" placeholder="Customer Name">
 
 <button class="btn" onclick="bookLab()">Save Record</button>
 
